@@ -46,13 +46,13 @@ class PyTest(TestCommand):
 
 
 setup(
-    name='http_request_randomizer',
-    version='1.2.2',
+    name='muted_http_request_randomizer',
+    version='0.0.1',
     url='http://pgaref.com/blog/python-proxy',
     license='MIT',
-    author='Panagiotis Garefalakis',
-    author_email='pangaref@gmail.com',
-    description='A package using public proxies to randomise http requests.',
+    author='Panagiotis Garefalakis, Wentao Lu',
+    author_email='pangaref@gmail.com, wentao@wentaolu.com',
+    description='muted HRR',
     long_description=LONG_DESCRIPTION,
     packages=find_packages(exclude=['tests']),
     platforms='any',
