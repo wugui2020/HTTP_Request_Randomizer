@@ -31,9 +31,9 @@ handler.setFormatter(formatter)
 class RequestProxy:
     def __init__(self, web_proxy_list=[], sustain=False, timeout=5):
         self.userAgent = UserAgentManager()
-        self.logger = logging.getLogger()
+        self.logger = logging.getLogger('http_request_randomizer')
         self.logger.addHandler(handler)
-        self.logger.setLevel(0)
+        self.logger.setLevel(logging.WARNING)
 
         #####
         # Each of the classes below implements a specific URL Parser
@@ -110,7 +110,7 @@ class RequestProxy:
                 raise ConnectionError("HTTP Response [403] - Permission denied error")
             elif request.status_code == 503:
                 raise ConnectionError("HTTP Response [503] - Service unavailable error")
-            print('RR Status {}'.format(request.status_code))
+            self.logger.debug('RR Status {}'.format(request.status_code))
             return request
         except ConnectionError:
             try:
@@ -150,19 +150,19 @@ if __name__ == '__main__':
 
     start = time.time()
     req_proxy = RequestProxy()
-    print("Initialization took: {0} sec".format((time.time() - start)))
-    print("Size: {0}".format(len(req_proxy.get_proxy_list())))
-    print("ALL = {0} ".format(list(map(lambda x: x.get_address(), req_proxy.get_proxy_list()))))
+    req_proxy.logger.debug("Initialization took: {0} sec".format((time.time() - start)))
+    req_proxy.logger.debug("Size: {0}".format(len(req_proxy.get_proxy_list())))
+    req_proxy.logger.debug("ALL = {0} ".format(list(map(lambda x: x.get_address(), req_proxy.get_proxy_list()))))
 
     test_url = 'http://ipv4.icanhazip.com'
 
     while True:
         start = time.time()
         request = req_proxy.generate_proxied_request(test_url)
-        print("Proxied Request Took: {0} sec => Status: {1}".format((time.time() - start), request.__str__()))
+        req_proxy.logger.debug("Proxied Request Took: {0} sec => Status: {1}".format((time.time() - start), request.__str__()))
         if request is not None:
-            print("\t Response: ip={0}".format(u''.join(request.text).encode('utf-8')))
-        print("Proxy List Size: {0}".format(len(req_proxy.get_proxy_list())))
+            req_proxy.logger.debug("\t Response: ip={0}".format(u''.join(request.text).encode('utf-8')))
+        req_proxy.logger.debug("Proxy List Size: {0}".format(len(req_proxy.get_proxy_list())))
 
-        print("-> Going to sleep..")
+        req_proxy.logger.debug("-> Going to sleep..")
         time.sleep(10)

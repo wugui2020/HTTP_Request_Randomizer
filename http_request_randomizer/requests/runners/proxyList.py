@@ -44,11 +44,9 @@ def run(args):
     for source in providers:
         if source == 'all':
             for p in proxy_list.parsers.values():
-                print("* id: {0:<30} url: {1:<50}".format(p.id, p.get_url()))
                 proxy_out += p.parse_proxyList()
         else:
             p = proxy_list.parsers[source]
-            print("* id: {0:<30} url: {1:<50}".format(p.id, p.get_url()))
             proxy_out += p.parse_proxyList()
 
     # dump proxies to output stream
