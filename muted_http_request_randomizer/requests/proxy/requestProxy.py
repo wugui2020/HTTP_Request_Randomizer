@@ -10,12 +10,12 @@ from requests.exceptions import TooManyRedirects
 from requests.exceptions import ConnectionError
 from requests.exceptions import ReadTimeout
 
-from http_request_randomizer.requests.errors.ProxyListException import ProxyListException
-from http_request_randomizer.requests.parsers.FreeProxyParser import FreeProxyParser
-from http_request_randomizer.requests.parsers.ProxyForEuParser import ProxyForEuParser
-from http_request_randomizer.requests.parsers.RebroWeeblyParser import RebroWeeblyParser
-from http_request_randomizer.requests.parsers.SamairProxyParser import SamairProxyParser
-from http_request_randomizer.requests.useragent.userAgent import UserAgentManager
+from muted_http_request_randomizer.requests.errors.ProxyListException import ProxyListException
+from muted_http_request_randomizer.requests.parsers.FreeProxyParser import FreeProxyParser
+from muted_http_request_randomizer.requests.parsers.ProxyForEuParser import ProxyForEuParser
+from muted_http_request_randomizer.requests.parsers.RebroWeeblyParser import RebroWeeblyParser
+from muted_http_request_randomizer.requests.parsers.SamairProxyParser import SamairProxyParser
+from muted_http_request_randomizer.requests.useragent.userAgent import UserAgentManager
 
 __author__ = 'pgaref'
 sys.path.insert(0, os.path.abspath('../../../../'))
@@ -40,9 +40,9 @@ class RequestProxy:
         #####
         parsers = list([])
         parsers.append(FreeProxyParser('FreeProxy', 'http://free-proxy-list.net', timeout=timeout))
-        parsers.append(ProxyForEuParser('ProxyForEU', 'http://proxyfor.eu/geo.php', 1.0, timeout=timeout))
-        parsers.append(RebroWeeblyParser('ReBro', 'http://rebro.weebly.com', timeout=timeout))
-        parsers.append(SamairProxyParser('Samair', 'https://premproxy.com', timeout=timeout))
+        # parsers.append(ProxyForEuParser('ProxyForEU', 'http://proxyfor.eu/geo.php', 1.0, timeout=timeout))
+        # parsers.append(RebroWeeblyParser('ReBro', 'http://rebro.weebly.com', timeout=timeout))
+        # parsers.append(SamairProxyParser('Samair', 'https://premproxy.com', timeout=timeout))
 
         self.logger.debug("=== Initialized Proxy Parsers ===")
         for i in range(len(parsers)):

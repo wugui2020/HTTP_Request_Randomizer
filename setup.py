@@ -47,7 +47,7 @@ class PyTest(TestCommand):
 
 setup(
     name='muted_http_request_randomizer',
-    version='0.0.1',
+    version='0.0.4',
     url='http://pgaref.com/blog/python-proxy',
     license='MIT',
     author='Panagiotis Garefalakis, Wentao Lu',
@@ -68,13 +68,12 @@ setup(
                       'requests >= 2.18.4',
                       'pyOpenSSL >= 17.5.0'
                       ],
-    use_scm_version=True,
     setup_requires=['setuptools-scm', 'pytest-runner'],
     zip_safe=False,
     # include_package_data=True,
     package_data={
         # Include agents.txt files
-        'http_request_randomizer.requests': ['data/*'],
+        'muted_http_request_randomizer.requests': ['data/*'],
     },
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow

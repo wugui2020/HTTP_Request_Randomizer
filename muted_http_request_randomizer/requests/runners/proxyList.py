@@ -4,10 +4,10 @@ import sys
 
 import pkg_resources
 
-from http_request_randomizer.requests.parsers.FreeProxyParser import FreeProxyParser
-from http_request_randomizer.requests.parsers.ProxyForEuParser import ProxyForEuParser
-from http_request_randomizer.requests.parsers.RebroWeeblyParser import RebroWeeblyParser
-from http_request_randomizer.requests.parsers.SamairProxyParser import SamairProxyParser
+from muted_http_request_randomizer.requests.parsers.FreeProxyParser import FreeProxyParser
+from muted_http_request_randomizer.requests.parsers.ProxyForEuParser import ProxyForEuParser
+from muted_http_request_randomizer.requests.parsers.RebroWeeblyParser import RebroWeeblyParser
+from muted_http_request_randomizer.requests.parsers.SamairProxyParser import SamairProxyParser
 
 __author__ = 'pgaref'
 

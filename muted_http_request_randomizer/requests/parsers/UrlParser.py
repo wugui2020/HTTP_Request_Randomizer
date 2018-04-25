@@ -1,6 +1,6 @@
 import re
 
-from http_request_randomizer.requests.errors.ParserExceptions import ParserException
+from muted_http_request_randomizer.requests.errors.ParserExceptions import ParserException
 
 __author__ = 'pgaref'
 

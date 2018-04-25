@@ -3,8 +3,8 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 
-from http_request_randomizer.requests.parsers.UrlParser import UrlParser
-from http_request_randomizer.requests.proxy.ProxyObject import ProxyObject, AnonymityLevel
+from muted_http_request_randomizer.requests.parsers.UrlParser import UrlParser
+from muted_http_request_randomizer.requests.proxy.ProxyObject import ProxyObject, AnonymityLevel
 
 logger = logging.getLogger(__name__)
 __author__ = 'pgaref'
