@@ -5,7 +5,7 @@ import requests
 from muted_http_request_randomizer.requests.parsers.UrlParser import UrlParser
 from muted_http_request_randomizer.requests.proxy.ProxyObject import ProxyObject, AnonymityLevel
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 __author__ = 'pgaref'
 
 
@@ -25,18 +25,24 @@ class ProxyForEuParser(UrlParser):
             content = response.text.split('\n')
             for i, line in enumerate(content):
                 if i > 3:
+                    if not line:
+                        break
                     proxy_obj = self.create_proxy_object(line.split())
                     # Avoid Straggler proxies and make sure it is a Valid Proxy Address
                     if proxy_obj is not None and UrlParser.valid_ip_port(proxy_obj.get_address()):
                         curr_proxy_list.append(proxy_obj)
                     else:
+                        # print("Proxy Invalid: {}".format(line))
                         logger.debug("Proxy Invalid: {}".format(line))
         except AttributeError as e:
             logger.error("Provider {0} failed with Attribute error: {1}".format(self.id, e))
+            # print("Provider {0} failed with Attribute error: {1}".format(self.id, e))
         except KeyError as e:
             logger.error("Provider {0} failed with Key error: {1}".format(self.id, e))
+            # print("Provider {0} failed with Key error: {1}".format(self.id, e))
         except Exception as e:
             logger.error("Provider {0} failed with Unknown error: {1}".format(self.id, e))
+            # print("Provider {0} failed with Unknown error: {1}".format(self.id, e))
         finally:
             return curr_proxy_list
 
