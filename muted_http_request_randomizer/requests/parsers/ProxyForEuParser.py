@@ -1,7 +1,6 @@
 import logging
 
 import requests
-from bs4 import BeautifulSoup
 
 from muted_http_request_randomizer.requests.parsers.UrlParser import UrlParser
 from muted_http_request_randomizer.requests.proxy.ProxyObject import ProxyObject, AnonymityLevel
@@ -31,7 +30,7 @@ class ProxyForEuParser(UrlParser):
                     if proxy_obj is not None and UrlParser.valid_ip_port(proxy_obj.get_address()):
                         curr_proxy_list.append(proxy_obj)
                     else:
-                        logger.debug("Proxy Invalid: {}".format(dataset))
+                        logger.debug("Proxy Invalid: {}".format(line))
         except AttributeError as e:
             logger.error("Provider {0} failed with Attribute error: {1}".format(self.id, e))
         except KeyError as e:
@@ -43,9 +42,10 @@ class ProxyForEuParser(UrlParser):
 
     def create_proxy_object(self, line):
         ip, port = line[0].split(':')
-        anonymity, country, _ = line[1].split('-') 
+        anonymity, country = line[1].split('-')[:2]
         anonymity = AnonymityLevel.get(anonymity.strip())
-        return ProxyObject(source=self.id, ip=ip, port=port, anonymity_level=anonymity, country=country)
+        return ProxyObject(source=self.id, ip=ip, port=port,
+                           anonymity_level=anonymity, country=country)
 
     def __str__(self):
         return "ProxyForEU Parser of '{0}' with required bandwidth: '{1}' KBs" \
