@@ -65,9 +65,9 @@ class AnonymityLevel(Enum):
     ELITE: The proxy hides the requester's IP address and does not add any proxy-related headers to the request.
     """
     UNKNOWN = 0   # default
-    TRANSPARENT = 1, 'transparent', 'transparent proxy', 'LOW'
-    ANONYMOUS = 2, 'anonymous', 'anonymous proxy', 'high-anonymous'
-    ELITE = 3, 'elite', 'elite proxy', 'HIGH', 'Elite & Anonymous'
+    TRANSPARENT = 1, 'transparent', 'transparent proxy', 'LOW', 'N'
+    ANONYMOUS = 2, 'anonymous', 'anonymous proxy', 'high-anonymous', 'A'
+    ELITE = 3, 'elite', 'elite proxy', 'HIGH', 'Elite & Anonymous', 'H'
 
     def __new__(cls, int_value, *value_aliases):
         obj = object.__new__(cls)

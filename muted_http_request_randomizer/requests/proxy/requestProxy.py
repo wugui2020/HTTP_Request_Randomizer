@@ -40,7 +40,7 @@ class RequestProxy:
         #####
         parsers = list([])
         parsers.append(FreeProxyParser('FreeProxy', 'http://free-proxy-list.net', timeout=timeout))
-        # parsers.append(ProxyForEuParser('ProxyForEU', 'http://proxyfor.eu/geo.php', 1.0, timeout=timeout))
+        parsers.append(ProxyForEuParser('ProxyForEU', 'https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list.txt', 1.0, timeout=timeout))
         # parsers.append(RebroWeeblyParser('ReBro', 'http://rebro.weebly.com', timeout=timeout))
         # parsers.append(SamairProxyParser('Samair', 'https://premproxy.com', timeout=timeout))
 
